@@ -38,3 +38,32 @@ function getCurlReponse($userId, $apiKey, $resource, array $data, $language)
 
     return $response;
 }
+
+function getPdfCurl($userId, $apiKey, array $data)
+{
+    $serviceUrl = "https://pdf.astrologyapi.com/v1/basic_horoscope_pdf";
+
+
+    $authData = $userId.":".$apiKey;
+
+    $ch = curl_init();
+    curl_setopt($ch,CURLOPT_URL, $serviceUrl);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+
+    $header[] = 'Authorization: Basic '. base64_encode($authData);
+    /* Setting the Language of Response */
+
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+
+    $response = curl_exec($ch);
+
+    curl_close($ch);
+
+    return $response;
+}
