@@ -8,8 +8,8 @@
 
 require_once 'src/VedicRishiClient.php';
 
-$userId = "4545";
-$apiKey = "33e5731ac9bf30a51180ac18a7269ffb";
+$userId = "Type Your User Id";
+$apiKey = "Type Your ApI Key";
 
 
 
